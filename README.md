@@ -6,7 +6,7 @@ Got hashes from a compromised machine and want to test if the password hash have
 This was built using the impacket library
 
 ```
-python hashspray.py -userlist users -hashes :1uca3d1bd1a33geb1b15bab12196r5aa -target-ip 192.168.5.1  -threads 10
+python hashspray.py -userlist users -hashes :1uca3d1bd1a33geb1b15bab12196r5aa -target-ip 192.168.5.1
 ```
 Userlist example
 
