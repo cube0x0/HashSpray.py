@@ -91,7 +91,7 @@ def main():
         for _user in users.readlines():
             domain = ''
             try:
-                domain, user = re.compile(r',*\\').split(_user)
+                domain, user = _user.split("/")
             except:
                 user = _user
             process = multiprocessing.Process(target=login,
