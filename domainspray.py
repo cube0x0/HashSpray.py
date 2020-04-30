@@ -17,7 +17,7 @@ def login(username, password, domain, lmhash, nthash, aesKey, dc_ip, target_ip, 
             smbClient.kerberosLogin(username, password, domain, lmhash, nthash, aesKey, dc_ip)
         else:
             smbClient.login(username, password, domain, lmhash, nthash)
-        print("Success %s\%s" % (domain, username))
+        print("[+]Success %s\%s" % (domain, username))
         SMBConnection.close
     except smbconnection.SessionError as e:
         return
@@ -44,8 +44,6 @@ def main():
     group.add_argument('-port', choices=['139', '445'], nargs='?', default='445', metavar="destination port",
                        help='Destination port to connect to SMB Server')
 
-    group = parser.add_argument_group('threads')
-    group.add_argument('-threads', action="store", metavar = "threads", help='Number of threads to use, default is 1')
 
     if len(sys.argv)==1:
         parser.print_help()
@@ -78,15 +76,10 @@ def main():
         password = ''
     else:
         password = options.password
-    
-    if options.threads is None:
-        threads = 1
-    else:
-        threads = int(options.threads)
 
     #threading
     jobs = []
-    procs = int(threads) # Number of processes to create
+
     with open(options.userlist, 'r') as users:
         for _user in users.readlines():
             domain = ''
@@ -95,10 +88,10 @@ def main():
             except:
                 user = _user
             process = multiprocessing.Process(target=login,
-            args=(user.strip(), options.password, domain, lmhash, nthash, options.aesKey, options.dc_ip, options.target_ip, options.port))
+            args=(user.strip(), password, domain, lmhash, nthash, options.aesKey, options.dc_ip, options.target_ip, options.port))
             jobs.append(process)
 
-    # Start the processes (i.e. calculate the random number lists)      
+    # Start the processes
     for j in jobs:
         j.start()
 

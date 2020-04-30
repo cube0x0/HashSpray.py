@@ -14,6 +14,7 @@ def login(username, password, domain, lmhash, nthash, aesKey, dc_ip, target_ip, 
     try:
         smbClient = SMBConnection(target_ip, target_ip, sess_port=int(port))
         smbClient.login(username, password, domain, lmhash, nthash)
+        smbClient.connectTree('admin$')
         print("[+]Success %s %s" % (username, target_ip))
         SMBConnection.close
     except smbconnection.SessionError as e:
@@ -24,7 +25,7 @@ def login(username, password, domain, lmhash, nthash, aesKey, dc_ip, target_ip, 
 
 
 def main():
-    parser = argparse.ArgumentParser(add_help = True, description = "Local Admin Spraying Toolkit")
+    parser = argparse.ArgumentParser(add_help = True, description = "Find Local Admin Access")
 
     group = parser.add_argument_group('authentication')
     group.add_argument('-computerlist', action='store', metavar = "computerlist", help='List of computers to spray')
