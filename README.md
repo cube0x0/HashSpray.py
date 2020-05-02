@@ -102,3 +102,26 @@ connection:
                         will use the domain part (FQDN) specified in the
                         target parameter
 ```
+
+```
+python ldapspray.py -userlist users  -hashes :1uca3d1bd1a33geb1b15bab12196r5aa -dc-ip 192.168.221.11
+
+LDAP[s] Spraying Toolkit
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -port {389,636}       Destination port to connect to. LDAP defaults to 389,
+                        LDAPS to 636.
+
+authentication:
+  -userlist userlist    List of users to spray, format is [[domain/]username
+  -password password    Clear-text password
+  -hashes LMHASH:NTHASH
+                        NTLM hashes, format is LMHASH:NTHASH
+
+connection:
+  -domain domain        FQDN of the target domain
+  -dc-ip ip address     IP Address of the domain controller. If omitted it
+                        will use the domain part (FQDN) specified in the
+                        target parameter
+```
